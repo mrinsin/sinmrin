@@ -8,7 +8,7 @@ import { AuthService } from './user/auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  pageTitle = 'Acme Product Management';
+  pageTitle = 'Mrinsin';
 
   get isLoggedIn(): boolean {
     return this.authService.isLoggedIn;
