@@ -1,5 +1,20 @@
+nav {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: peachpuff !important;
+    border: 4em;
+  }
+
+  hr {
+    height: 0.2em;
+    background-color: whitesmoke;
+}
+
+.container {
+    margin-top: 3em; 
+}
+
 .nav-link {
-  font-size: large;
+  font-size: medium;
   cursor: pointer;
 }
 

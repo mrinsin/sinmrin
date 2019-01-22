@@ -13,3 +13,8 @@ div.card {
 .table {
   margin-top: 10px
 }
+
+#everything, div, nav {
+  font-family: 'Courier New', Courier, monospace;
+  background-color: peachpuff !important;
+}
