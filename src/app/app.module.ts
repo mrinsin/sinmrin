@@ -17,6 +17,7 @@ import { MessageModule } from './messages/message.module';
 
 // Routing Feature
 import { RouterModule } from '@angular/router';
+import { BlogPostsComponent } from './blog-posts/blog-posts.component';
 
 const appRoutes = [
   { path: 'welcome', component: WelcomeComponent },
@@ -37,7 +38,8 @@ const appRoutes = [
   declarations: [
     AppComponent,
     WelcomeComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    BlogPostsComponent
   ],
   bootstrap: [AppComponent]
 })
