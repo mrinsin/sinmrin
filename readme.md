@@ -1,6 +1,8 @@
 # mrinsin
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.3.
+I'm using Deborah Kurata's routing course on Pluralsight, with plans to also integrate her reactive forms course into this app.
+
 
 ## Development server
 
