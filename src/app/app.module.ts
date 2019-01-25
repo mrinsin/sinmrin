@@ -17,7 +17,7 @@ import { MessageModule } from './messages/message.module';
 
 // Routing Feature
 import { RouterModule } from '@angular/router';
-import { BlogPostsComponent } from './blog-posts/blog-posts.component';
+import { BlogPostsModule } from './blog-posts/blog-posts.module';
 
 const appRoutes = [
   { path: 'welcome', component: WelcomeComponent },
@@ -32,6 +32,7 @@ const appRoutes = [
     HttpClientModule,
     InMemoryWebApiModule.forRoot(ProductData, { delay: 1000 }),
     ProductModule,
+    BlogPostsModule,
     UserModule,
     MessageModule
   ],
@@ -39,7 +40,6 @@ const appRoutes = [
     AppComponent,
     WelcomeComponent,
     PageNotFoundComponent,
-    BlogPostsComponent
   ],
   bootstrap: [AppComponent]
 })

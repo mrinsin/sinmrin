@@ -8,7 +8,7 @@ import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
-    SharedModule
+    SharedModule,
   ],
   declarations: [
     ProductListComponent,
