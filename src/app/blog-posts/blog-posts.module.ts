@@ -5,8 +5,8 @@ import { BlogPostsComponent } from './blog-posts.component';
 import { RouterModule } from '@angular/router';
 
 const blogRoutes = [
-  { path: 'blogs', component: BlogPostsComponent }
-];
+  {path: 'blogs', component: BlogPostsComponent }
+]
 
 @NgModule({
   imports: [
