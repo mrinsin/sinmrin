@@ -16,25 +16,19 @@ import { UserModule } from './user/user.module';
 import { MessageModule } from './messages/message.module';
 
 // Routing Feature
-import { RouterModule } from '@angular/router';
 import { BlogPostsModule } from './blog-posts/blog-posts.module';
-
-const appRoutes = [
-  { path: 'welcome', component: WelcomeComponent },
-  { path: '', redirectTo: 'welcome', pathMatch: 'full' },
-  { path: '**', component: PageNotFoundComponent },
-];
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes),
     HttpClientModule,
     InMemoryWebApiModule.forRoot(ProductData, { delay: 1000 }),
     ProductModule,
     BlogPostsModule,
     UserModule,
-    MessageModule
+    MessageModule,
+    AppRoutingModule,
   ],
   declarations: [
     AppComponent,
