@@ -14,7 +14,7 @@ const appRoutes = [
     RouterModule.forRoot(appRoutes),
    ],
    exports: [
-       RouterModule
+       RouterModule 
    ]
 })
 export class AppRoutingModule {

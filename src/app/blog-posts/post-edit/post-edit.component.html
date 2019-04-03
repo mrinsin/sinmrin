@@ -4,30 +4,30 @@
   </div>
 
   <div class="card-body"
-       *ngIf="product">
+       *ngIf="post">
     <form novalidate
-          #productForm="ngForm">
+          #postForm="ngForm">
 
       <div class="form-group row">
         <label class="col-md-2 col-form-label"
-               for="productNameId">Product Name</label>
+               for="postNameId">post Name</label>
         <div class="col-md-8">
           <input class="form-control"
-                 id="productNameId"
+                 id="postNameId"
                  type="text"
                  placeholder="Name (required)"
                  required
                  minlength="3"
-                 [(ngModel)]=product.productName
-                 name="productName"
-                 #productNameVar="ngModel"
-                 [ngClass]="{'is-invalid': (productNameVar.touched || productNameVar.dirty) && !productNameVar.valid }" />
+                 [(ngModel)]=post.postTitle
+                 name="postName"
+                 #postNameVar="ngModel"
+                 [ngClass]="{'is-invalid': (postNameVar.touched || postNameVar.dirty) && !postNameVar.valid }" />
           <span class="invalid-feedback">
-            <span *ngIf="productNameVar.errors?.required">
-              Product name is required.
+            <span *ngIf="postNameVar.errors?.required">
+              post name is required.
             </span>
-            <span *ngIf="productNameVar.errors?.minlength">
-              Product name must be at least three characters.
+            <span *ngIf="postNameVar.errors?.minlength">
+              post name must be at least three characters.
             </span>
           </span>
         </div>
@@ -35,20 +35,20 @@
 
       <div class="form-group row">
         <label class="col-md-2 col-form-label"
-               for="productCodeId">Product Code</label>
+               for="postCodeId">post Code</label>
         <div class="col-md-8">
           <input class="form-control"
-                 id="productCodeId"
+                 id="postCodeId"
                  type="text"
                  placeholder="Code (required)"
                  required
-                 [(ngModel)]=product.productCode
-                 name="productCode"
-                 #productCodeVar="ngModel"
-                 [ngClass]="{'is-invalid': (productCodeVar.touched || productCodeVar.dirty) && !productCodeVar.valid }" />
+                 [(ngModel)]=post.postCode
+                 name="postCode"
+                 #postCodeVar="ngModel"
+                 [ngClass]="{'is-invalid': (postCodeVar.touched || postCodeVar.dirty) && !postCodeVar.valid }" />
           <span class="invalid-feedback">
-            <span *ngIf="productCodeVar.errors?.required">
-              Product code is required.
+            <span *ngIf="postCodeVar.errors?.required">
+              post code is required.
             </span>
           </span>
         </div>
@@ -62,7 +62,7 @@
                     id="descriptionId"
                     placeholder="Description"
                     rows=3
-                    [(ngModel)]=product.description
+                    [(ngModel)]=post.description
                     name="description"></textarea>
         </div>
       </div>
@@ -72,9 +72,9 @@
           <button class="btn btn-primary mr-3"
                   style="width:80px"
                   type="button"
-                  [title]="productForm.valid ? 'Save your entered data' : 'Disabled until the form data is valid'"
-                  [disabled]="!productForm.valid"
-                  (click)="saveProduct()">
+                  [title]="postForm.valid ? 'Save your entered data' : 'Disabled until the form data is valid'"
+                  [disabled]="!postForm.valid"
+                  (click)="savepost()">
             Save
           </button>
           <button class="btn btn-outline-secondary mr-3"
@@ -86,8 +86,8 @@
           <button class="btn btn-outline-warning"
                   style="width:80px"
                   type="button"
-                  title="Delete this product"
-                  (click)="deleteProduct()">
+                  title="Delete this post"
+                  (click)="deletepost()">
             Delete
           </button>
         </div>

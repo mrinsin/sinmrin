@@ -4,27 +4,25 @@ import { HttpClientModule } from '@angular/common/http';
 
 // Imports for loading & configuring the in-memory web api
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { ProductData } from './products/product-data';
+import { PostData } from './blog-posts/post-data';
 
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './home/welcome.component';
 import { PageNotFoundComponent } from './page-not-found.component';
 
 /* Feature Modules */
-import { ProductModule } from './products/product.module';
+import { BlogPostsModule } from './blog-posts/blog-posts.module';
 import { UserModule } from './user/user.module';
 import { MessageModule } from './messages/message.module';
 
 // Routing Feature
-import { BlogPostsModule } from './blog-posts/blog-posts.module';
 import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   imports: [
     BrowserModule,
     HttpClientModule,
-    InMemoryWebApiModule.forRoot(ProductData, { delay: 1000 }),
-    ProductModule,
+    InMemoryWebApiModule.forRoot(PostData, { delay: 1000 }),
     BlogPostsModule,
     UserModule,
     MessageModule,

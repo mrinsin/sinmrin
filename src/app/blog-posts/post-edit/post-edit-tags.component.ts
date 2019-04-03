@@ -1,15 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { Product } from '../product';
-
 @Component({
-  templateUrl: './product-edit-tags.component.html'
+  templateUrl: './post-edit-tags.component.html'
 })
-export class ProductEditTagsComponent implements OnInit {
+export class PostEditTagsComponent implements OnInit {
   errorMessage: string;
   newTags = '';
-  product = { id: 1, category: 'test', tags: ['test'] };
+  post = { id: 1, category: 'test', tags: ['test'] };
 
   constructor(private route: ActivatedRoute) { }
 
@@ -22,7 +20,7 @@ export class ProductEditTagsComponent implements OnInit {
       this.errorMessage = 'Enter the search keywords separated by commas and then press Add';
     } else {
       const tagArray = this.newTags.split(',');
-      this.product.tags = this.product.tags ? this.product.tags.concat(tagArray) : tagArray;
+      this.post.tags = this.post.tags ? this.post.tags.concat(tagArray) : tagArray;
       this.newTags = '';
       this.errorMessage = '';
     }
@@ -30,6 +28,6 @@ export class ProductEditTagsComponent implements OnInit {
 
   // Remove the tag from the array of tags.
   removeTag(idx: number): void {
-    this.product.tags.splice(idx, 1);
+    this.post.tags.splice(idx, 1);
   }
 }

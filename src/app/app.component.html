@@ -8,13 +8,13 @@
       </a>
     </li>
     <li class="nav-item">
-      <a [routerLink]="['/blogs']"
+      <a [routerLink]="['/posts']"
           class="nav-link">
           | Blog
         </a>
     </li>
     <li  *ngIf="isLoggedIn" class="nav-item">
-      <a class="nav-link" [routerLink]="['/blogs/add']">|  Add Post</a>
+      <a class="nav-link" [routerLink]="['/posts', 0, 'edit']">|  Add Post</a>
     </li>
   </ul>
   <ul class="navbar-nav ml-auto">

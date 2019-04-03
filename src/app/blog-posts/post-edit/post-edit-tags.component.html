@@ -1,7 +1,7 @@
 <div class="card-body">
   <form novalidate>
     <fieldset>
-      <legend>Product Search Tags</legend>
+      <legend>post Search Tags</legend>
 
       <div class="form-group row">
         <label class="col-md-2 col-form-label"
@@ -13,12 +13,12 @@
                  placeholder="Category (required)"
                  required
                  minlength="3"
-                 [(ngModel)]="product.category"
+                 [(ngModel)]="post.category"
                  name="category"
                  #categoryVar="ngModel"
                  [ngClass]="{'is-invalid': (categoryVar.touched ||
                                             categoryVar.dirty || 
-                                            product.id !== 0) &&
+                                            post.id !== 0) &&
                                             !categoryVar.valid }" />
           <span class="invalid-feedback">
             <span *ngIf="categoryVar.errors?.required">
@@ -54,7 +54,7 @@
 
       <div class="row">
         <div class="col-md-8 offset-md-2">
-          <span *ngFor="let tag of product.tags; let i = index">
+          <span *ngFor="let tag of post.tags; let i = index">
             <button class="btn btn-outline-secondary"
                     style="font-size:smaller;margin-bottom:12px;margin-right:2px"
                     title="Click to remove this tag"

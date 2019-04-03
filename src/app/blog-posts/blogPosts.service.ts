@@ -4,64 +4,64 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
 
-import { Product } from './product';
+import { BlogPosts } from './blogPosts';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProductService {
-  private productsUrl = 'api/products';
+export class BlogPostService {
+  private blogPostsUrl = 'api/posts';
 
   constructor(private http: HttpClient) { }
 
-  getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.productsUrl)
+  getPosts(): Observable<BlogPosts[]> {
+    return this.http.get<BlogPosts[]>(this.blogPostsUrl)
       .pipe(
         tap(data => console.log(JSON.stringify(data))),
         catchError(this.handleError)
       );
   }
 
-  getProduct(id: number): Observable<Product> {
+  getPost(id: number): Observable<BlogPosts> {
     if (id === 0) {
-      return of(this.initializeProduct());
+      return of(this.initializePost());
     }
-    const url = `${this.productsUrl}/${id}`;
-    return this.http.get<Product>(url)
+    const url = `${this.blogPostsUrl}/${id}`;
+    return this.http.get<BlogPosts>(url)
       .pipe(
-        tap(data => console.log('getProduct: ' + JSON.stringify(data))),
+        tap(data => console.log('getPost: ' + JSON.stringify(data))),
         catchError(this.handleError)
       );
   }
 
-  createProduct(product: Product): Observable<Product> {
+  createPost(post: BlogPosts): Observable<BlogPosts> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    product.id = null;
-    return this.http.post<Product>(this.productsUrl, product, { headers: headers })
+    post.id = null;
+    return this.http.post<BlogPosts>(this.blogPostsUrl, post, { headers: headers })
       .pipe(
-        tap(data => console.log('createProduct: ' + JSON.stringify(data))),
+        tap(data => console.log('createPost: ' + JSON.stringify(data))),
         catchError(this.handleError)
       );
   }
 
-  deleteProduct(id: number): Observable<{}> {
+  deletePost(id: number): Observable<{}> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const url = `${this.productsUrl}/${id}`;
-    return this.http.delete<Product>(url, { headers: headers })
+    const url = `${this.blogPostsUrl}/${id}`;
+    return this.http.delete<BlogPosts>(url, { headers: headers })
       .pipe(
-        tap(data => console.log('deleteProduct: ' + id)),
+        tap(data => console.log('deletePost: ' + id)),
         catchError(this.handleError)
       );
   }
 
-  updateProduct(product: Product): Observable<Product> {
+  updatePost(post: BlogPosts): Observable<BlogPosts> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const url = `${this.productsUrl}/${product.id}`;
-    return this.http.put<Product>(url, product, { headers: headers })
+    const url = `${this.blogPostsUrl}/${post.id}`;
+    return this.http.put<BlogPosts>(url, post, { headers: headers })
       .pipe(
-        tap(() => console.log('updateProduct: ' + product.id)),
-        // Return the product on an update
-        map(() => product),
+        tap(() => console.log('updatePost: ' + post.id)),
+        // Return the Post on an update
+        map(() => post),
         catchError(this.handleError)
       );
   }
@@ -82,18 +82,15 @@ export class ProductService {
     return throwError(errorMessage);
   }
 
-  private initializeProduct(): Product {
+  private initializePost(): BlogPosts {
     // Return an initialized object
     return {
       id: 0,
-      productName: null,
-      productCode: null,
+      postTitle: null,
+      postDate: null,
       category: null,
-      tags: [],
-      releaseDate: null,
-      price: null,
-      description: null,
-      starRating: null,
+      tags: null,
+      postBody: null,
       imageUrl: null
     };
   }
