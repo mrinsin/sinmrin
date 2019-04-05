@@ -24,8 +24,8 @@ export class PostEditComponent implements OnInit{
               private router: Router) { }
 
   ngOnInit(){
-    this.route.params.subscribe(data => {
-      this.postId = data["id"];
+    this.route.paramMap.subscribe(data => {
+      this.postId = +data.get('id');
       this.getpost(this.postId);
     })
   }
