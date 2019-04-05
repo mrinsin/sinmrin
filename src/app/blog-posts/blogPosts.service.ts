@@ -27,10 +27,9 @@ export class BlogPostService {
       return of(this.initializePost());
     }
     const url = `${this.blogPostsUrl}/${id}`;
-    console.log('I HERE')
     return this.http.get<BlogPost>(url)
       .pipe(
-        tap(data => console.log('getPost: ' + JSON.stringify(data))),
+        tap(data => console.log('****************************getPost: ' + JSON.stringify(data))),
         catchError(this.handleError)
       );
   }
@@ -40,7 +39,7 @@ export class BlogPostService {
     post.id = null;
     return this.http.post<BlogPost>(this.blogPostsUrl, post, { headers: headers })
       .pipe(
-        tap(data => console.log('createPost: ' + JSON.stringify(data))),
+        tap(data => console.log('****************************createPost: ' + JSON.stringify(data))),
         catchError(this.handleError)
       );
   }
@@ -50,7 +49,7 @@ export class BlogPostService {
     const url = `${this.blogPostsUrl}/${id}`;
     return this.http.delete<BlogPost>(url, { headers: headers })
       .pipe(
-        tap(data => console.log('deletePost: ' + id)),
+        tap(data => console.log('****************************deletePost: ' + id)),
         catchError(this.handleError)
       );
   }
@@ -60,7 +59,7 @@ export class BlogPostService {
     const url = `${this.blogPostsUrl}/${post.id}`;
     return this.http.put<BlogPost>(url, post, { headers: headers })
       .pipe(
-        tap(() => console.log('updatePost: ' + post.id)),
+        tap(() => console.log('****************************updatePost: ' + post.id)),
         // Return the Post on an update
         map(() => post),
         catchError(this.handleError)

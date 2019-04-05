@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BlogPostService } from './blogPOsts.service';
 import { BlogPost } from './blogPosts';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'pm-blog-posts',
@@ -26,9 +27,13 @@ export class BlogPostsComponent implements OnInit {
   filteredPosts: BlogPost[] = [];
   blogPosts: BlogPost[] = [];
 
-  constructor(private postService: BlogPostService) { }
+  constructor(private postService: BlogPostService,
+              private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.listFilter = this.route.snapshot.queryParamMap.get('filterBy') || ''
+    this.showImage = this.route.snapshot.queryParamMap.get('showImage')  === 'true'
+
     this.postService.getPosts().subscribe(
       blogPosts => {
         this.blogPosts = blogPosts;

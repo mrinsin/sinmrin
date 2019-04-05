@@ -44,7 +44,8 @@
                      [style.margin.px]="imageMargin">
               </td>
               <td>
-                <a [routerLink]="['/posts', post.id]">
+                <a [routerLink]="['/posts', post.id]"
+                   [queryParams]="{filterBy: listFilter, showImage: showImage}">
                   {{ post.postTitle }}
                 </a>
               </td>

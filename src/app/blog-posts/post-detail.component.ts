@@ -28,8 +28,6 @@ export class PostDetailComponent implements OnInit {
   }
 
   onPostRetrieved(post: BlogPost): void {
-    console.log('retrieved ::' + post.postTitle)
-
     this.post = post;
 
     if (this.post) {
