@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
 
-import { BlogPosts } from './blogPosts';
+import { BlogPost } from './blogPosts';
 
 @Injectable({
   providedIn: 'root'
@@ -14,30 +14,31 @@ export class BlogPostService {
 
   constructor(private http: HttpClient) { }
 
-  getPosts(): Observable<BlogPosts[]> {
-    return this.http.get<BlogPosts[]>(this.blogPostsUrl)
+  getPosts(): Observable<BlogPost[]> {
+    return this.http.get<BlogPost[]>(this.blogPostsUrl)
       .pipe(
         tap(data => console.log(JSON.stringify(data))),
         catchError(this.handleError)
       );
   }
 
-  getPost(id: number): Observable<BlogPosts> {
+  getPost(id: number): Observable<BlogPost> {
     if (id === 0) {
       return of(this.initializePost());
     }
     const url = `${this.blogPostsUrl}/${id}`;
-    return this.http.get<BlogPosts>(url)
+    console.log('I HERE')
+    return this.http.get<BlogPost>(url)
       .pipe(
         tap(data => console.log('getPost: ' + JSON.stringify(data))),
         catchError(this.handleError)
       );
   }
 
-  createPost(post: BlogPosts): Observable<BlogPosts> {
+  createPost(post: BlogPost): Observable<BlogPost> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     post.id = null;
-    return this.http.post<BlogPosts>(this.blogPostsUrl, post, { headers: headers })
+    return this.http.post<BlogPost>(this.blogPostsUrl, post, { headers: headers })
       .pipe(
         tap(data => console.log('createPost: ' + JSON.stringify(data))),
         catchError(this.handleError)
@@ -47,17 +48,17 @@ export class BlogPostService {
   deletePost(id: number): Observable<{}> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const url = `${this.blogPostsUrl}/${id}`;
-    return this.http.delete<BlogPosts>(url, { headers: headers })
+    return this.http.delete<BlogPost>(url, { headers: headers })
       .pipe(
         tap(data => console.log('deletePost: ' + id)),
         catchError(this.handleError)
       );
   }
 
-  updatePost(post: BlogPosts): Observable<BlogPosts> {
+  updatePost(post: BlogPost): Observable<BlogPost> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const url = `${this.blogPostsUrl}/${post.id}`;
-    return this.http.put<BlogPosts>(url, post, { headers: headers })
+    return this.http.put<BlogPost>(url, post, { headers: headers })
       .pipe(
         tap(() => console.log('updatePost: ' + post.id)),
         // Return the Post on an update
@@ -82,7 +83,7 @@ export class BlogPostService {
     return throwError(errorMessage);
   }
 
-  private initializePost(): BlogPosts {
+  private initializePost(): BlogPost {
     // Return an initialized object
     return {
       id: 0,

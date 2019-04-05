@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BlogPostService } from './blogPOsts.service';
-import { BlogPosts } from './blogPosts';
+import { BlogPost } from './blogPosts';
 
 @Component({
   selector: 'pm-blog-posts',
@@ -23,8 +23,8 @@ export class BlogPostsComponent implements OnInit {
     this.filteredPosts = this.listFilter ? this.performFilter(this.listFilter) : this.blogPosts;
   }
 
-  filteredPosts: BlogPosts[] = [];
-  blogPosts: BlogPosts[] = [];
+  filteredPosts: BlogPost[] = [];
+  blogPosts: BlogPost[] = [];
 
   constructor(private postService: BlogPostService) { }
 
@@ -38,9 +38,9 @@ export class BlogPostsComponent implements OnInit {
     );
   }
 
-  performFilter(filterBy: string): BlogPosts[] {
+  performFilter(filterBy: string): BlogPost[] {
     filterBy = filterBy.toLocaleLowerCase();
-    return this.blogPosts.filter((posts: BlogPosts) =>
+    return this.blogPosts.filter((posts: BlogPost) =>
       posts.postTitle.toLocaleLowerCase().indexOf(filterBy) !== -1);
   }
 

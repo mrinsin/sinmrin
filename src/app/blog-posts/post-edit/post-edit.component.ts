@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import { MessageService } from '../../messages/message.service';
 
-import { BlogPosts } from '../blogPosts';
+import { BlogPost } from '../blogPosts';
 import { BlogPostService } from '../blogPOsts.service';
 
 @Component({
@@ -13,7 +13,7 @@ export class PostEditComponent {
   pageTitle = 'post Edit';
   errorMessage: string;
 
-  post: BlogPosts;
+  post: BlogPost;
 
   constructor(private postService: BlogPostService,
               private messageService: MessageService) { }
@@ -21,12 +21,12 @@ export class PostEditComponent {
   getpost(id: number): void {
     this.postService.getPost(id)
       .subscribe(
-        (post: BlogPosts) => this.onPostRetrieved(post),
+        (post: BlogPost) => this.onPostRetrieved(post),
         (error: any) => this.errorMessage = <any>error
       );
   }
 
-  onPostRetrieved(post: BlogPosts): void {
+  onPostRetrieved(post: BlogPost): void {
     this.post = post;
 
     if (!this.post) {

@@ -44,7 +44,7 @@
                      [style.margin.px]="imageMargin">
               </td>
               <td>
-                <a>
+                <a [routerLink]="['/posts', post.id]">
                   {{ post.postTitle }}
                 </a>
               </td>
