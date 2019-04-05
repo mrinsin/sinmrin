@@ -35,14 +35,14 @@
 
       <div class="form-group row">
         <label class="col-md-2 col-form-label"
-               for="postCodeId">post Code</label>
+               for="postCodeId">Posted Date</label>
         <div class="col-md-8">
           <input class="form-control"
                  id="postCodeId"
                  type="text"
                  placeholder="Code (required)"
                  required
-                 [(ngModel)]=post.postCode
+                 [(ngModel)]=post.postDate
                  name="postCode"
                  #postCodeVar="ngModel"
                  [ngClass]="{'is-invalid': (postCodeVar.touched || postCodeVar.dirty) && !postCodeVar.valid }" />
@@ -62,7 +62,7 @@
                     id="descriptionId"
                     placeholder="Description"
                     rows=3
-                    [(ngModel)]=post.description
+                    [(ngModel)]=post.postBody
                     name="description"></textarea>
         </div>
       </div>
@@ -74,20 +74,21 @@
                   type="button"
                   [title]="postForm.valid ? 'Save your entered data' : 'Disabled until the form data is valid'"
                   [disabled]="!postForm.valid"
-                  (click)="savepost()">
+                  (click)="savePost()">
             Save
           </button>
           <button class="btn btn-outline-secondary mr-3"
                   style="width:80px"
                   type="button"
-                  title="Cancel your edits">
+                  title="Cancel your edits"
+                  [routerLink]="['/posts']">
             Cancel
           </button>
           <button class="btn btn-outline-warning"
                   style="width:80px"
                   type="button"
                   title="Delete this post"
-                  (click)="deletepost()">
+                  (click)="deletePost()">
             Delete
           </button>
         </div>

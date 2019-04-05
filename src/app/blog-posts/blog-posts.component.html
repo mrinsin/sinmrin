@@ -51,7 +51,9 @@
               <td>{{ post.postDate }}</td>
            
               <td>
-                <button class="btn btn-outline-primary btn-sm">
+                <button class="btn btn-outline-primary btn-sm"
+                [routerLink]="['/posts', post.id, 'edit']">
+                >
                   Edit
                 </button>
               </td>

@@ -1,22 +1,34 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { MessageService } from '../../messages/message.service';
 
 import { BlogPost } from '../blogPosts';
 import { BlogPostService } from '../blogPOsts.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Route } from '@angular/compiler/src/core';
 
 @Component({
   templateUrl: './post-edit.component.html',
   styleUrls: ['./post-edit.component.css']
 })
-export class PostEditComponent {
+export class PostEditComponent implements OnInit{
   pageTitle = 'post Edit';
   errorMessage: string;
 
   post: BlogPost;
+  postId: number
 
   constructor(private postService: BlogPostService,
-              private messageService: MessageService) { }
+              private messageService: MessageService,
+              private route: ActivatedRoute,
+              private router: Router) { }
+
+  ngOnInit(){
+    this.route.params.subscribe(data => {
+      this.postId = data["id"];
+      this.getpost(this.postId);
+    })
+  }
 
   getpost(id: number): void {
     this.postService.getPost(id)
@@ -40,7 +52,7 @@ export class PostEditComponent {
     }
   }
 
-  deeletePost(): void {
+  deletePost(): void {
     if (this.post.id === 0) {
       // Don't delete, it was never saved.
       this.onSaveComplete(`${this.post.postTitle} was deleted`);
@@ -53,6 +65,7 @@ export class PostEditComponent {
           );
       }
     }
+    this.router.navigate(['/posts']);
   }
 
   savePost(): void {
@@ -81,5 +94,7 @@ export class PostEditComponent {
     }
 
     // Navigate back to the product list
+    this.router.navigate(['posts']);
+
   }
 }
