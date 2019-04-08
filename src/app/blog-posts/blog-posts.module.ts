@@ -8,6 +8,8 @@ import { PostDetailComponent } from './post-detail.component';
 import { PostEditComponent } from './post-edit/post-edit.component';
 
 import { PostResolver } from './post-resolver.service';
+import { PostEditInfoComponent } from './post-edit/post-edit-info.component';
+import { PostEditTagsComponent } from './post-edit/post-edit-tags.component';
 
 const blogRoutes = [
   {
@@ -22,7 +24,18 @@ const blogRoutes = [
   {
     path: 'posts/:id/edit', 
     component: PostEditComponent, 
-    resolve: { post: PostResolver } 
+    resolve: { post: PostResolver },
+    children: [
+      {
+        path: '', redirectTo: 'info', pathMatch: 'full'
+      },
+      {
+        path: 'info', component: PostEditInfoComponent
+      },
+      {
+        path: 'tags', component: PostEditTagsComponent
+      }
+    ] 
   }
 ]
 
@@ -34,7 +47,9 @@ const blogRoutes = [
   declarations: [
     BlogPostsComponent,
     PostDetailComponent,
-    PostEditComponent
+    PostEditComponent,
+    PostEditInfoComponent,
+    PostEditTagsComponent
   ]
 })
 export class BlogPostsModule { }

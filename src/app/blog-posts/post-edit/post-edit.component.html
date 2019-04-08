@@ -5,97 +5,36 @@
 
   <div class="card-body"
        *ngIf="post">
-    <form novalidate
-          #postForm="ngForm">
-
-      <div class="form-group row">
-        <label class="col-md-2 col-form-label"
-               for="postNameId">post Name</label>
-        <div class="col-md-8">
-          <input class="form-control"
-                 id="postNameId"
-                 type="text"
-                 placeholder="Name (required)"
-                 required
-                 minlength="3"
-                 [(ngModel)]=post.postTitle
-                 name="postName"
-                 #postNameVar="ngModel"
-                 [ngClass]="{'is-invalid': (postNameVar.touched || postNameVar.dirty) && !postNameVar.valid }" />
-          <span class="invalid-feedback">
-            <span *ngIf="postNameVar.errors?.required">
-              post name is required.
-            </span>
-            <span *ngIf="postNameVar.errors?.minlength">
-              post name must be at least three characters.
-            </span>
-          </span>
-        </div>
-      </div>
-
-      <div class="form-group row">
-        <label class="col-md-2 col-form-label"
-               for="postCodeId">Posted Date</label>
-        <div class="col-md-8">
-          <input class="form-control"
-                 id="postCodeId"
-                 type="text"
-                 placeholder="Code (required)"
-                 required
-                 [(ngModel)]=post.postDate
-                 name="postCode"
-                 #postCodeVar="ngModel"
-                 [ngClass]="{'is-invalid': (postCodeVar.touched || postCodeVar.dirty) && !postCodeVar.valid }" />
-          <span class="invalid-feedback">
-            <span *ngIf="postCodeVar.errors?.required">
-              post code is required.
-            </span>
-          </span>
-        </div>
-      </div>
-
-      <div class="form-group row">
-        <label class="col-md-2 col-form-label"
-               for="descriptionId">Description</label>
-        <div class="col-md-8">
-          <textarea class="form-control"
-                    id="descriptionId"
-                    placeholder="Description"
-                    rows=3
-                    [(ngModel)]=post.postBody
-                    name="description"></textarea>
-        </div>
-      </div>
-
-      <div class="form-group row mb-2">
-        <div class="col-md-4">
-          <button class="btn btn-primary mr-3"
-                  style="width:80px"
-                  type="button"
-                  [title]="postForm.valid ? 'Save your entered data' : 'Disabled until the form data is valid'"
-                  [disabled]="!postForm.valid"
-                  (click)="savePost()">
-            Save
-          </button>
-          <button class="btn btn-outline-secondary mr-3"
-                  style="width:80px"
-                  type="button"
-                  title="Cancel your edits"
-                  [routerLink]="['/posts']"
-                  queryParamsHandling="preserve"
-                  >
-            Cancel
-          </button>
-          <button class="btn btn-outline-warning"
-                  style="width:80px"
-                  type="button"
-                  title="Delete this post"
-                  (click)="deletePost()">
-            Delete
-          </button>
-        </div>
-      </div>
-    </form>
+    <div class="wizard">
+      <a [routerLink]="['info']">
+        Basic Information
+      </a>
+      <a [routerLink]="['tags']">
+        Search Tags  
+      </a>
+    </div>
+    <router-outlet></router-outlet>
+    <button class="btn btn-outline-primary mr-3"
+            style="width:80px"
+            type="button"
+            title="Save your edits"
+            (click)="savePost()">
+       Save     
+    </button>
+    <button class="btn btn-outline-secondary mr-3"
+            style="width:80px"
+            type="button"
+            title="Cancel your edits"
+            [routerLink]="['/posts']">
+       Cancel     
+    </button>
+    <button class="btn btn-outline-warning mr-3"
+            style="width:80px"
+            type="button"
+            title="Delete this post"
+            (click)="deletPost()">
+       Delete     
+    </button>
   </div>
 </div>
 
