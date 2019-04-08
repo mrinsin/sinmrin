@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { BlogPostService } from './blogPOsts.service';
-import { BlogPost } from './blogPosts';
+import { PostService } from './post.service';
+import { Post } from './post';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -24,10 +24,10 @@ export class BlogPostsComponent implements OnInit {
     this.filteredPosts = this.listFilter ? this.performFilter(this.listFilter) : this.blogPosts;
   }
 
-  filteredPosts: BlogPost[] = [];
-  blogPosts: BlogPost[] = [];
+  filteredPosts: Post[] = [];
+  blogPosts: Post[] = [];
 
-  constructor(private postService: BlogPostService,
+  constructor(private postService: PostService,
               private route: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -43,9 +43,9 @@ export class BlogPostsComponent implements OnInit {
     );
   }
 
-  performFilter(filterBy: string): BlogPost[] {
+  performFilter(filterBy: string): Post[] {
     filterBy = filterBy.toLocaleLowerCase();
-    return this.blogPosts.filter((posts: BlogPost) =>
+    return this.blogPosts.filter((posts: Post) =>
       posts.postTitle.toLocaleLowerCase().indexOf(filterBy) !== -1);
   }
 

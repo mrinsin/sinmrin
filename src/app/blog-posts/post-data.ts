@@ -1,11 +1,11 @@
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 
-import { BlogPost } from './blogPosts';
+import { Post } from './post';
 
 export class PostData implements InMemoryDbService {
 
   createDb() {
-    const posts: BlogPost[] = [
+    const posts: Post[] = [
       {
         'id': 1,
        'postBody': 'Hi is this a first post or what',

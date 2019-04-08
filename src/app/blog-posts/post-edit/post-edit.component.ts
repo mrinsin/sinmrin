@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 import { MessageService } from '../../messages/message.service';
+import { PostService } from '../post.service';
 
-import { BlogPost } from '../blogPosts';
-import { BlogPostService } from '../blogPOsts.service';
+import { Post, PostResolved } from '../post';
+
 import { ActivatedRoute, Router } from '@angular/router';
-import { Route } from '@angular/compiler/src/core';
 
 @Component({
   templateUrl: './post-edit.component.html',
@@ -15,30 +15,21 @@ export class PostEditComponent implements OnInit{
   pageTitle = 'post Edit';
   errorMessage: string;
 
-  post: BlogPost;
+  post: Post;
   postId: number
 
-  constructor(private postService: BlogPostService,
+  constructor(private postService: PostService,
               private messageService: MessageService,
               private route: ActivatedRoute,
               private router: Router) { }
 
   ngOnInit(){
-    this.route.paramMap.subscribe(data => {
-      this.postId = +data.get('id');
-      this.getpost(this.postId);
-    })
+    const resolvedPost: PostResolved = this.route.snapshot.data['post'];
+    this.errorMessage = resolvedPost.error;
+    this.onPostRetrieved(resolvedPost.post)
   }
 
-  getpost(id: number): void {
-    this.postService.getPost(id)
-      .subscribe(
-        (post: BlogPost) => this.onPostRetrieved(post),
-        (error: any) => this.errorMessage = <any>error
-      );
-  }
-
-  onPostRetrieved(post: BlogPost): void {
+  onPostRetrieved(post: Post): void {
     this.post = post;
 
     if (!this.post) {

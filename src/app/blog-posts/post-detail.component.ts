@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BlogPostService } from './blogPosts.service';
-import { BlogPost } from './blogPosts';
+import { Post, PostResolved } from './post';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -9,25 +8,19 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class PostDetailComponent implements OnInit {
   pageTitle = 'post Detail';
-  post: BlogPost;
+  post: Post;
   errorMessage: string;
   postId: number;
 
-  constructor(private postService: BlogPostService, private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(data => {
-      this.postId = +data.get('id');
-     this.getPost(this.postId)
-    })
-  }
-  getPost(id: number) {
-    this.postService.getPost(id).subscribe(
-      post => this.onPostRetrieved(post),
-      error => this.errorMessage = <any>error);
+    const resolvedPost: PostResolved = this.route.snapshot.data['post'];
+    this.errorMessage = resolvedPost.error;
+    this.onPostRetrieved(resolvedPost.post)
   }
 
-  onPostRetrieved(post: BlogPost): void {
+  onPostRetrieved(post: Post): void {
     this.post = post;
 
     if (this.post) {

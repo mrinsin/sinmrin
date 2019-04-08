@@ -1,5 +1,5 @@
 /* Defines the product entity */
-export interface BlogPost {
+export interface Post {
   id: number,
   postTitle: string;
   postDate: string;
@@ -9,7 +9,7 @@ export interface BlogPost {
   imageUrl: string;
 }
 
-export interface BlogPostsResolved {
-  product: BlogPost;
+export interface PostResolved {
+  post: Post;
   error?: any;
 }
