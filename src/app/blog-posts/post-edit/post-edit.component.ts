@@ -24,9 +24,11 @@ export class PostEditComponent implements OnInit{
               private router: Router) { }
 
   ngOnInit(){
-    const resolvedPost: PostResolved = this.route.snapshot.data['post'];
-    this.errorMessage = resolvedPost.error;
-    this.onPostRetrieved(resolvedPost.post)
+    this.route.data.subscribe(data => {
+      const resolvedData = data['post']
+      this.errorMessage = resolvedData.error;
+      this.onPostRetrieved(resolvedData.post)
+    })
   }
 
   onPostRetrieved(post: Post): void {
