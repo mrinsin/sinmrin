@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Post } from '../post';
 
 @Component({
   templateUrl: './post-edit-tags.component.html'
@@ -7,11 +8,16 @@ import { ActivatedRoute } from '@angular/router';
 export class PostEditTagsComponent implements OnInit {
   errorMessage: string;
   newTags = '';
-  post = { id: 1, category: 'test', tags: ['test'] };
+  post : Post;
 
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.route.parent.data.subscribe(data => {
+      const resolvedData = data['post'];
+      this.errorMessage = resolvedData.errorMessage;
+      this.post = resolvedData.post
+    })
   }
 
   // Add the defined tags

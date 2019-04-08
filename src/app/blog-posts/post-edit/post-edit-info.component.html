@@ -1,32 +1,32 @@
 <div class="card-body">
   <form novalidate
-        #productForm="ngForm">
+        #postForm="ngForm">
     <fieldset>
-      <legend>Basic Product Information</legend>
+      <legend>Basic Post Information</legend>
 
       <div class="form-group row">
         <label class="col-md-2 col-form-label"
-               for="productNameId">Product Name</label>
+               for="postNameId">Post Name</label>
         <div class="col-md-8">
           <input class="form-control"
-                 id="productNameId"
+                 id="postNameId"
                  type="text"
                  placeholder="Name (required)"
                  required
                  minlength="3"
-                 [(ngModel)]=product.productName
-                 name="productName"
-                 #productNameVar="ngModel"
-                 [ngClass]="{'is-invalid': (productNameVar.touched || 
-                                            productNameVar.dirty ||
-                                            product.id !== 0) && 
-                                            !productNameVar.valid }" />
+                 [(ngModel)]=post.postTitle
+                 name="postName"
+                 #postNameVar="ngModel"
+                 [ngClass]="{'is-invalid': (postNameVar.touched || 
+                                            postNameVar.dirty ||
+                                            post.id !== 0) && 
+                                            !postNameVar.valid }" />
           <span class="invalid-feedback">
-            <span *ngIf="productNameVar.errors?.required">
-              Product name is required.
+            <span *ngIf="postNameVar.errors?.required">
+              post name is required.
             </span>
-            <span *ngIf="productNameVar.errors?.minlength">
-              Product name must be at least three characters.
+            <span *ngIf="postNameVar.errors?.minlength">
+              post name must be at least three characters.
             </span>
           </span>
         </div>
@@ -34,23 +34,23 @@
 
       <div class="form-group row">
         <label class="col-md-2 col-form-label"
-               for="productCodeId">Product Code</label>
+               for="postCodeId">Posted Date</label>
         <div class="col-md-8">
           <input class="form-control"
-                 id="productCodeId"
+                 id="postCodeId"
                  type="text"
                  placeholder="Code (required)"
                  required
-                 [(ngModel)]=product.productCode
-                 name="productCode"
-                 #productCodeVar="ngModel"
-                 [ngClass]="{'is-invalid': (productCodeVar.touched || 
-                                            productCodeVar.dirty ||
-                                            product.id !== 0) &&
-                                            !productCodeVar.valid }" />
+                 [(ngModel)]=post.postDate
+                 name="postCode"
+                 #postCodeVar="ngModel"
+                 [ngClass]="{'is-invalid': (postCodeVar.touched || 
+                                            postCodeVar.dirty ||
+                                            post.id !== 0) &&
+                                            !postCodeVar.valid }" />
           <span class="invalid-feedback">
-            <span *ngIf="productCodeVar.errors?.required">
-              Product code is required.
+            <span *ngIf="postCodeVar.errors?.required">
+              post code is required.
             </span>
           </span>
         </div>
@@ -64,7 +64,7 @@
                     id="descriptionId"
                     placeholder="Description"
                     rows=3
-                    [(ngModel)]=product.description
+                    [(ngModel)]=post.postBody
                     name="description"></textarea>
         </div>
       </div>
