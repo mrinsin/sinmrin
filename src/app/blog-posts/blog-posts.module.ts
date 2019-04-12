@@ -6,15 +6,17 @@ import { SharedModule } from '../shared/shared.module';
 import { BlogPostsComponent } from './blog-posts.component';
 import { PostDetailComponent } from './post-detail.component';
 import { PostEditComponent } from './post-edit/post-edit.component';
-
-import { PostResolver } from './post-resolver.service';
 import { PostEditInfoComponent } from './post-edit/post-edit-info.component';
 import { PostEditTagsComponent } from './post-edit/post-edit-tags.component';
+
+import { PostResolver } from './post-resolver.service';
+import { PostsListResolver } from './posts-list-resolver.service.';
 
 const blogRoutes = [
   {
     path: 'posts', 
-    component: BlogPostsComponent 
+    component: BlogPostsComponent,
+    resolve: { postsList: PostsListResolver }
   },
   {
     path: 'posts/:id', 

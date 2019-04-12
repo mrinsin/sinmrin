@@ -34,9 +34,12 @@ export class BlogPostsComponent implements OnInit {
     this.listFilter = this.route.snapshot.queryParamMap.get('filterBy') || ''
     this.showImage = this.route.snapshot.queryParamMap.get('showImage')  === 'true'
 
-    this.postService.getPosts().subscribe(
-      blogPosts => {
-        this.blogPosts = blogPosts;
+
+    this.route.data.subscribe(
+      data => {
+    //TODO: need to add error handling
+
+        this.blogPosts = data['postsList'];
         this.filteredPosts = this.performFilter(this.listFilter);
       },
       error => this.errorMessage = <any>error
