@@ -46,8 +46,8 @@
 </nav>
 <hr/>
 
-<div class="container">
+<div class="container" [@slideInAnimation]="o.isActivated? o.activatedRoute : ''">
   <div>
-      <router-outlet></router-outlet>
+      <router-outlet #o="outlet"></router-outlet>
     </div>
 </div>
