@@ -1,5 +1,5 @@
 import { NgModule } from "@angular/core";
-import { RouterModule } from "@angular/router";
+import { RouterModule, PreloadAllModules } from "@angular/router";
 import { WelcomeComponent } from "./home/welcome.component";
 import { PageNotFoundComponent } from "./page-not-found.component";
 
@@ -12,7 +12,10 @@ const appRoutes = [
 
 @NgModule({
    imports: [
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(
+        appRoutes, 
+        { preloadingStrategy: PreloadAllModules }
+    )
 ],
    exports: [
        RouterModule 
