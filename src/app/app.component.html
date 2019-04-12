@@ -17,8 +17,8 @@
           | Blog
         </a>
     </li>
-    <li  *ngIf="isLoggedIn" 
-         class="nav-item" >
+   <li *ngIf="isLoggedIn" 
+        class="nav-item" >
       <a 
       class="nav-link" 
       [routerLink]="['/posts', 0, 'edit']" 
@@ -27,16 +27,30 @@
     </li>
   </ul>
   <ul class="navbar-nav ml-auto">
+    <li class="nav-item" >
+        <a 
+        class="nav-link" 
+        (click)="showTwitterFeed()"
+        *ngIf="!shouldShowTweets" >
+        Show Tweets</a>
+    </li>
+    <li class="nav-item" >
+        <a 
+        class="nav-link" 
+        (click)="hideTwitterFeed()"
+        *ngIf="shouldShowTweets" >
+        Hide Tweets</a>
+    </li>
     <li class="nav-item"
         *ngIf="isLoggedIn">
-      <a class="nav-link">Welcome {{ userName }}</a>
+      <a class="nav-link">| Welcome {{ userName }}</a>
     </li>
     <li class="nav-item"
         *ngIf="!isLoggedIn">
       <a [routerLink]="['/login']" 
          routerLinkActive="active"
          class="nav-link">
-      Log In
+     | Log In
     </a>
     </li>
     <li class="nav-item"
@@ -49,7 +63,12 @@
 <hr/>
 
 <div class="container" [@slideInAnimation]="o.isActivated? o.activatedRoute : ''">
-  <div>
-      <router-outlet #o="outlet"></router-outlet>
+  <div class="row">
+    <div class="col-md-10">
+     <router-outlet #o="outlet"></router-outlet>
     </div>
+    <div class="col-md-2">
+     <router-outlet name="twitter"></router-outlet>
+    </div>
+  </div>
 </div>

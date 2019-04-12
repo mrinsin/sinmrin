@@ -4,6 +4,7 @@ import { AuthService } from './user/auth.service';
 import { Router, Event, NavigationStart, NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
 
 import { slideInAnimation } from './app.animation'
+import { MessageService } from './messages/message.service';
 
 @Component({
   selector: 'pm-root',
@@ -27,7 +28,15 @@ export class AppComponent {
     return '';
   }
 
-  constructor(private authService: AuthService, private router: Router) { 
+  get shouldShowTweets(): boolean {
+    return this.messageService.showTweets;
+  }
+
+  set shouldShowTweets(value:boolean) {
+    this.messageService.showTweets = value;
+  }
+
+  constructor(private authService: AuthService, private router: Router, private messageService: MessageService) { 
     router.events.subscribe((routerEvent: Event) => {
       this.checkRouterEvent(routerEvent)
     });
@@ -43,6 +52,16 @@ export class AppComponent {
         routerEvent instanceof NavigationError){
       this.isLoading = false;
     }
+  }
+
+  showTwitterFeed(): void {
+    this.router.navigate([ { outlets: { twitter: ['tweets']} } ]);
+    this.shouldShowTweets = true;
+  }
+
+  hideTwitterFeed(): void {
+    this.router.navigate([ { outlets: { twitter: null} } ]);
+    this.shouldShowTweets = false;
   }
 
   logOut(): void {
