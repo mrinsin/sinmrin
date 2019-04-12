@@ -15,31 +15,34 @@ import { PostsListResolver } from './posts-list-resolver.service.';
 const blogRoutes = [
   {
     path: 'posts', 
-    component: BlogPostsComponent,
-    resolve: { postsList: PostsListResolver }
-  },
-  {
-    path: 'posts/:id', 
-    component: PostDetailComponent, 
-    resolve: { post: PostResolver }
-  },
-  {
-    path: 'posts/:id/edit', 
-    component: PostEditComponent, 
-    resolve: { post: PostResolver },
     children: [
-      {
-        path: '', redirectTo: 'info', pathMatch: 'full'
+      { path:'',
+        component: BlogPostsComponent,
+        resolve: { postsList: PostsListResolver }
+      },
+      { 
+        path: ':id', 
+        component: PostDetailComponent, 
+        resolve: { post: PostResolver }
       },
       {
-        path: 'info', component: PostEditInfoComponent
-      },
-      {
-        path: 'tags', component: PostEditTagsComponent
+        path: ':id/edit', 
+        component: PostEditComponent, 
+        resolve: { post: PostResolver },
+        children: [
+          {
+            path: '', redirectTo: 'info', pathMatch: 'full'
+          },
+          {
+            path: 'info', component: PostEditInfoComponent
+          },
+          {
+            path: 'tags', component: PostEditTagsComponent
+          }
+        ] 
       }
-    ] 
-  }
-]
+  ]
+}];
 
 @NgModule({
   imports: [

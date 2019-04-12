@@ -17,7 +17,6 @@ export class PostService {
   getPosts(): Observable<Post[]> {
     return this.http.get<Post[]>(this.blogPostsUrl)
       .pipe(
-        tap(data => console.log(JSON.stringify(data))),
         catchError(this.handleError)
       );
   }
@@ -29,7 +28,6 @@ export class PostService {
     const url = `${this.blogPostsUrl}/${id}`;
     return this.http.get<Post>(url)
       .pipe(
-        tap(data => console.log('****************************getPost: ' + JSON.stringify(data))),
         catchError(this.handleError)
       );
   }
@@ -39,7 +37,6 @@ export class PostService {
     post.id = null;
     return this.http.post<Post>(this.blogPostsUrl, post, { headers: headers })
       .pipe(
-        tap(data => console.log('****************************createPost: ' + JSON.stringify(data))),
         catchError(this.handleError)
       );
   }
@@ -49,7 +46,6 @@ export class PostService {
     const url = `${this.blogPostsUrl}/${id}`;
     return this.http.delete<Post>(url, { headers: headers })
       .pipe(
-        tap(data => console.log('****************************deletePost: ' + id)),
         catchError(this.handleError)
       );
   }
@@ -59,7 +55,6 @@ export class PostService {
     const url = `${this.blogPostsUrl}/${post.id}`;
     return this.http.put<Post>(url, post, { headers: headers })
       .pipe(
-        tap(() => console.log('****************************updatePost: ' + post.id)),
         // Return the Post on an update
         map(() => post),
         catchError(this.handleError)
