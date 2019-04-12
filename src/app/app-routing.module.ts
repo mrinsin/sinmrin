@@ -5,6 +5,7 @@ import { PageNotFoundComponent } from "./page-not-found.component";
 
 const appRoutes = [
     { path: 'welcome', component: WelcomeComponent },
+    { path: 'posts', loadChildren: './blog-posts/blog-posts.module#BlogPostsModule' },
     { path: '', redirectTo: 'welcome', pathMatch: 'full' },
     { path: '**', component: PageNotFoundComponent },
   ];

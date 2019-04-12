@@ -14,37 +14,33 @@ import { PostResolver } from './post-resolver.service';
 import { PostsListResolver } from './posts-list-resolver.service.';
 
 const blogRoutes = [
-  {
-    path: 'posts', 
-    children: [
-      { path:'',
-        component: BlogPostsComponent,
-        resolve: { postsList: PostsListResolver }
-      },
-      { 
-        path: ':id', 
-        component: PostDetailComponent, 
-        resolve: { post: PostResolver }
-      },
-      {
-        path: ':id/edit', 
-        component: PostEditComponent, 
-        canActivate: [AuthGuard],
-        resolve: { post: PostResolver },
-        children: [
-          {
-            path: '', redirectTo: 'info', pathMatch: 'full'
-          },
-          {
-            path: 'info', component: PostEditInfoComponent
-          },
-          {
-            path: 'tags', component: PostEditTagsComponent
-          }
-        ] 
-      }
-  ]
-}];
+    { path:'',
+      component: BlogPostsComponent,
+      resolve: { postsList: PostsListResolver }
+    },
+    { 
+      path: ':id', 
+      component: PostDetailComponent, 
+      resolve: { post: PostResolver }
+    },
+    {
+      path: ':id/edit', 
+      component: PostEditComponent, 
+      canActivate: [AuthGuard],
+      resolve: { post: PostResolver },
+      children: [
+        {
+          path: '', redirectTo: 'info', pathMatch: 'full'
+        },
+        {
+          path: 'info', component: PostEditInfoComponent
+        },
+        {
+          path: 'tags', component: PostEditTagsComponent
+        }
+      ] 
+    }
+  ];
 
 @NgModule({
   imports: [
