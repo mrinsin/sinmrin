@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { SharedModule } from '../shared/shared.module';
+import { AuthGuard } from '../user/auth.guard';
 
 import { BlogPostsComponent } from './blog-posts.component';
 import { PostDetailComponent } from './post-detail.component';
@@ -28,6 +29,7 @@ const blogRoutes = [
       {
         path: ':id/edit', 
         component: PostEditComponent, 
+        canActivate: [AuthGuard],
         resolve: { post: PostResolver },
         children: [
           {
